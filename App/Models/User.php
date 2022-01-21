@@ -20,17 +20,17 @@ class User extends \Core\Model
     public static function getAll()
     {
         $db = static::getDB();
-        $stmt = $db->query('SELECT user_id, name FROM users');
+        $stmt = $db->query('SELECT utente_id, nome FROM utenti');
         $result = array();
 
         if ($stmt->num_rows > 0) {
             // output data of each row
-            while($row = $stmt->fetch_assoc()) {
+            while ($row = $stmt->fetch_assoc()) {
                 $obj = [
-                    "user_id" => $row["user_id"],
-                    "name" => $row["name"],
+                    "user_id" => $row["utente_id"],
+                    "name" => $row["nome"]
                 ];
-                array_push($result,$obj);
+                array_push($result, $obj);
             }
         }
         return $result;
@@ -39,7 +39,7 @@ class User extends \Core\Model
     public static function getUser($id)
     {
         $db = static::getDB();
-        $stmt = $db->query('SELECT user_id, name FROM users WHERE user_id='.$id);
+        $stmt = $db->query('SELECT user_id, name FROM users WHERE user_id=' . $id);
         $result = array();
         if ($stmt->num_rows > 0) {
             // output data of each row
@@ -48,7 +48,7 @@ class User extends \Core\Model
                 "user_id" => $row["user_id"],
                 "name" => $row["name"],
             ];
-            array_push($result,$obj);
+            array_push($result, $obj);
         }
         return $result;
     }
