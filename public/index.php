@@ -31,7 +31,7 @@ $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 
 // Route with parameter
-$router->add('{id:\d+}', ['controller' => 'Home', 'action' => 'indexWithId']);
+$router->add('{num:\d+}', ['controller' => 'Home', 'action' => 'indexWithNum']);
 
 // Route with model
 $router->add('users', ['controller' => 'Home', 'action' => 'users']);
@@ -44,5 +44,5 @@ $router->add('users/{id:\d+}.json', ['controller' => 'Home', 'action' => 'usersW
 $router->add('users2', ['controller' => 'Home', 'action' => 'usersJs']);
 
 $router->add('{controller}/{action}');
-    
+
 $router->dispatch($_SERVER['QUERY_STRING']);

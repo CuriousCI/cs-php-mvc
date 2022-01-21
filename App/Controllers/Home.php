@@ -23,35 +23,39 @@ class Home extends \Core\Controller
         View::renderTemplate('Home/index.html');
     }
 
-    public function indexWithIdAction()
+    public function indexWithNumAction()
+    {
+        $num = $this->route_params["num"];
+        View::renderTemplate('Home/index_num.html', ['num' => $num]);
+    }
+
+    public function usersAction()
+    {
+        $users = User::getAll();
+        View::renderTemplate('Home/users.html', ['users' => $users]);
+    }
+
+    public function usersJsonAction()
+    {
+        $users = User::getAll();
+        echo json_encode($users);
+    }
+
+    public function usersWithIdAction()
     {
         $id = $this->route_params["id"];
-        View::renderTemplate('Home/index_id.html',['id' => $id]);
-    }
-
-    public function usersAction() {
-        $users = User::getAll();
-        View::renderTemplate('Home/users.html',['users' => $users]);
-    }
-
-    public function usersJsonAction() {
-        $users = User::getAll();
-        echo json_encode($users);
-    }
-
-    public function usersWithIdAction() {
-        $id = $this->route_params["id"];
         $users = User::getUser($id);
-        View::renderTemplate('Home/users.html',['users' => $users]);
+        View::renderTemplate('Home/users.html', ['users' => $users]);
     }
-    public function usersWithIdJsonAction() {
+    public function usersWithIdJsonAction()
+    {
         $id = $this->route_params["id"];
         $users = User::getUser($id);
         echo json_encode($users);
     }
 
-    public function usersJs() {
+    public function usersJs()
+    {
         View::renderTemplate('Home/users_js.html');
     }
-
 }
