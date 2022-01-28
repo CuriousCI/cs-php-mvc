@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\User;
+use \App\Models\Event;
+use \App\Models\Partecipants;
 
 /**
  * Home controller
@@ -41,6 +43,7 @@ class Home extends \Core\Controller
         echo json_encode($users);
     }
 
+
     public function usersWithIdAction()
     {
         $id = $this->route_params["id"];
@@ -57,5 +60,20 @@ class Home extends \Core\Controller
     public function usersJs()
     {
         View::renderTemplate('Home/users_js.html');
+    }
+
+    public function eventsAction()
+    {
+        $events = Event::getAll();
+        View::renderTemplate('Home/events.html', ['events' => $events]);
+    }
+
+    public function eventsWithIdAction()
+    {
+        $id = $this->route_params["id"];
+        $events = Event::getEvent($id);
+        $partecipants = Partecipants::getPartecipants($id);
+
+        View::renderTemplate('Home/events_id.html', ['events' => $events, 'partecipants' => $partecipants]);
     }
 }

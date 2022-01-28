@@ -40,6 +40,9 @@ $router->add('users/{id:\d+}', ['controller' => 'Home', 'action' => 'usersWithId
 $router->add('users.json', ['controller' => 'Home', 'action' => 'usersJson']);
 $router->add('users/{id:\d+}.json', ['controller' => 'Home', 'action' => 'usersWithIdJson']);
 
+$router->add('events', ['controller' => 'Home', 'action' => 'events']);
+$router->add('events/{id:\d+}', ['controller' => 'Home', 'action' => 'eventsWithId']);
+
 // Compose page client-side with JavaScript
 $router->add('users2', ['controller' => 'Home', 'action' => 'usersJs']);
 
